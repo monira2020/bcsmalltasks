@@ -13,7 +13,8 @@
 		D81EBA9F26E161A2005C0631 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D81EBA9D26E161A2005C0631 /* Main.storyboard */; };
 		D81EBAA126E161A4005C0631 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D81EBAA026E161A4005C0631 /* Assets.xcassets */; };
 		D81EBAA426E161A4005C0631 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D81EBAA226E161A4005C0631 /* LaunchScreen.storyboard */; };
-		D81EBAAE26E268AD005C0631 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = D81EBAAD26E268AD005C0631 /* Location.swift */; };
+		D81EBAB026E3A921005C0631 /* Temperature.swift in Sources */ = {isa = PBXBuildFile; fileRef = D81EBAAF26E3A921005C0631 /* Temperature.swift */; };
+		D81EBAB226E3A934005C0631 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = D81EBAB126E3A934005C0631 /* Location.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,7 +26,8 @@
 		D81EBAA026E161A4005C0631 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D81EBAA326E161A4005C0631 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D81EBAA526E161A4005C0631 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D81EBAAD26E268AD005C0631 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		D81EBAAF26E3A921005C0631 /* Temperature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Temperature.swift; sourceTree = "<group>"; };
+		D81EBAB126E3A934005C0631 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,8 +63,9 @@
 				D81EBA9726E161A2005C0631 /* AppDelegate.swift */,
 				D81EBA9926E161A2005C0631 /* SceneDelegate.swift */,
 				D81EBA9B26E161A2005C0631 /* ViewController.swift */,
-				D81EBAAD26E268AD005C0631 /* Location.swift */,
 				D81EBA9D26E161A2005C0631 /* Main.storyboard */,
+				D81EBAAF26E3A921005C0631 /* Temperature.swift */,
+				D81EBAB126E3A934005C0631 /* Location.swift */,
 				D81EBAA026E161A4005C0631 /* Assets.xcassets */,
 				D81EBAA226E161A4005C0631 /* LaunchScreen.storyboard */,
 				D81EBAA526E161A4005C0631 /* Info.plist */,
@@ -142,7 +145,8 @@
 			files = (
 				D81EBA9C26E161A2005C0631 /* ViewController.swift in Sources */,
 				D81EBA9826E161A2005C0631 /* AppDelegate.swift in Sources */,
-				D81EBAAE26E268AD005C0631 /* Location.swift in Sources */,
+				D81EBAB226E3A934005C0631 /* Location.swift in Sources */,
+				D81EBAB026E3A921005C0631 /* Temperature.swift in Sources */,
 				D81EBA9A26E161A2005C0631 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
