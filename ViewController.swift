@@ -24,6 +24,8 @@ class ViewController: UIViewController {
     //button f(x)
     @IBAction func searchCity(_ sender: UIButton) {
         zipCode = zipSearchTextField.text!
+        print(zipCode)
+        LocationAPI()
     }
     //parse for location key
     func LocationAPI() -> String {
@@ -51,6 +53,7 @@ class ViewController: UIViewController {
                             self.locationKey = user.Key
                             print("GOTCHASELFLOC \(self.locationKey)")
                             print("GOTCHASELFLOC2 \(self.cityName)")
+                            break
                         }
                     }
                     
@@ -99,7 +102,6 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.systemBlue
-        LocationAPI()
 //        callTemperatureAPI(locationKey:  LocationAPI())
         // Do any additional setup after loading the view.
     }
