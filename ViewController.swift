@@ -8,8 +8,7 @@
 import UIKit
 
 class ViewController: UIViewController {
-    //button defaults fix
-    //button dynamics fix
+
     
     @IBOutlet var zipSearchTextField: UITextField!
     @IBOutlet var cityNameLabel: UILabel!
@@ -18,7 +17,7 @@ class ViewController: UIViewController {
     var zipCode: String = ""
     var locationKey: String = ""
     var cityName: String = ""
-    var cityTemperature: String = ""
+    var cityTemperature: Ceiling = Ceiling.init(value: 0.0, unit: "", unitType: 0)
     
     
     //button f(x)
@@ -26,11 +25,11 @@ class ViewController: UIViewController {
         zipCode = zipSearchTextField.text!
         print(zipCode)
         LocationAPI()
+//        callTemperatureAPI()
     }
     //parse for location key
-    func LocationAPI() -> String {
-        print("MARKED LOCATION API")
-        print (zipCode)
+    func LocationAPI() {
+        print("REACHED LOCATION API")
         let url = URL(string: "http://dataservice.accuweather.com/locations/v1/postalcodes/search?apikey=\(apiKey)&q=\(zipCode)")!
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
@@ -39,20 +38,20 @@ class ViewController: UIViewController {
                let config = URLSessionConfiguration.default
                return URLSession(configuration: config)
            }()
-         
+            print("REACHED SESSION")
             let task = session.dataTask(with: request) {
                 (data, response, error) in
                 if let jsonData = data {
                     if let jsonString = String(data: jsonData, encoding: .utf8) {
                         //print(jsonString)
                         let users = try! JSONDecoder().decode([Location].self, from: jsonData)
-
+                        print("BeFore LOOP")
                         for user in users {
-                            print("GOTCHA\(user.Key)")
+                            //print("\(user.Key)")
                             self.cityName = user.LocalizedName
                             self.locationKey = user.Key
-                            print("GOTCHASELFLOC \(self.locationKey)")
-                            print("GOTCHASELFLOC2 \(self.cityName)")
+                           print("FORLOOP \(self.locationKey)")
+                           // print(" \(self.cityName)")
                             break
                         }
                     }
@@ -63,46 +62,56 @@ class ViewController: UIViewController {
                     print("Unexpected error fetching location")
                     }
             }
-            task.resume()
+        task.resume()
         self.cityNameLabel.text = cityName
-        return locationKey
+        print("BEFORE CALLAPI: \(locationKey)")
+        
        }
         
-    // parse for city name, temperature, and icon
-//    private func callTemperatureAPI(locationKey: String) {
-//        print("REACHED TEMP API")
-//        let url = URL(string: "http://dataservice.accuweather.com/forecasts/v1/daily/1day/\(locationKey)apikey=\(apiKey)&language=en-us&details=false&metric=true")!
-//
-//        var request = URLRequest(url: url)
-//        request.httpMethod = "GET"
-//
-//        let session: URLSession = {
-//               let config = URLSessionConfiguration.default
-//               return URLSession(configuration: config)
-//           }()
-//
-//            let task = session.dataTask(with: request) {
-//                (data, response, error) in
-//                if let jsonData = data {
-//                    if let jsonString = String(data: jsonData, encoding: .utf8) {
-//                        print(jsonString)
-//
-//        }
-//
-//                } else if let requestError = error {
-//                    print("Error fetching temperature: \(requestError)")
-//        } else {
-//                    print("Unexpected error fetching temperature")
-//                }
-//        }
-//            task.resume()
-//
-//       }
-//
+     //parse for city name, temperature, and icon
+     func callTemperatureAPI() {
+        print("REACHED TEMPERATURE API")
+        print("REACHED LOCATION KEY:\(locationKey)")
+        let url = URL(string: "http://dataservice.accuweather.com/forecasts/v1/hourly/1hour/7986_PC?apikey=K9ThwCmT3GORmKWcF8osHlQ9TaviWkXV&language=en-us&details=false&metric=true")!
+        print("URL: \(url)")
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+
+        let session: URLSession = {
+               let config = URLSessionConfiguration.default
+               return URLSession(configuration: config)
+           }()
+
+            let task = session.dataTask(with: request) {
+                (data, response, error) in
+                if let jsonData = data {
+                    if let jsonString = String(data: jsonData, encoding: .utf8) {
+                        print(jsonString)
+                        let users = try! JSONDecoder().decode([Temperature].self, from: jsonData)
+
+                        for user in users {
+                            print("\(user.temperature)")
+                            self.cityTemperature = user.temperature
+                            print(" \(self.cityTemperature)")
+                            break
+                        }
+        }
+
+                } else if let requestError = error {
+                    print("Error fetching temperature: \(requestError)")
+        } else {
+                    print("Unexpected error fetching temperature")
+                }
+        }
+        self.cityTemperatureLabel.text = String(cityTemperature.value)
+        print("CITY TEMPERATURE: \(String(describing: cityTemperatureLabel.text))")
+            task.resume()
+        
+       }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.systemBlue
-//        callTemperatureAPI(locationKey:  LocationAPI())
         // Do any additional setup after loading the view.
     }
 
